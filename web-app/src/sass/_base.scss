@@ -8,12 +8,14 @@
 
 body {
   font-size: $base-font-size;
+  font-family: $base-font;
   line-height: 1.4;
   background-color: $tone-light;
   border-bottom: 2px solid $colour-light-blue;
   min-height: 100%;
   position: absolute;
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -21,6 +23,16 @@ body {
 p, ul, ol, table {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+h1, h2, h3 {
+  font-family: $heading-font;
+  .sub-heading {
+    display: block;
+    font-family: $base-font;
+    font-size: $base-font-size;
+    font-weight: 400;
+  }
 }
 
 ol,
@@ -31,17 +43,28 @@ ul {
   }
 }
 
+ol.all-components {
+  list-style: none;
+  padding: 2em;
+  li {
+    margin: 2em 0;
+  }
+}
+
 input[type="text"],
 input[type="email"],
 input[type="search"],
 textarea,
 input[type="submit"],
 button {
-  padding: 0.5em 2em;
+  display: block;
+  width: auto;
+  padding: 0.5em 1em;
   border-width: 2px;
   border-style: solid;
   border-color: $colour-dark-blue;
-  background-color: #fff;
+  background-color: lighten($tone-light, 3%);
   border-radius: 0.4em;
   font-size: $base-font-size;
+  font-family: 'Slabo 27px', serif;
 }
