@@ -1,0 +1,39 @@
+@import "../../definitions";
+
+@mixin fieldColouring($colour) {
+  $newColour: darken($colour, 10%);
+  border-color: $newColour;
+  box-shadow: 0 0 0px 0px $colour;
+
+  &:hover {
+    box-shadow: 0 0 14px 1px $colour;
+  }
+
+  &:focus {
+    box-shadow: 0 0 28px 3px $colour;
+  }
+}
+
+.field {
+  display: block;
+  font-size: $base-font-size;
+  color: $tone-dark;
+  border-radius: 0.4em;
+  padding: 0.5em 2em;
+  outline: none;
+  @include fieldColouring($colour-light-blue);
+  transition: box-shadow 0.2s linear;
+}
+
+.field::placeholder {
+  color: #777;
+  font-style: italic;
+}
+
+.field.player-1 {
+  @include fieldColouring($colour-red);
+}
+
+.field.player-2 {
+  @include fieldColouring($colour-green);
+}
