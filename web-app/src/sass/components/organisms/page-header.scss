@@ -1,0 +1,16 @@
+@import "../../definitions";
+
+body > header {
+
+
+  h1 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  color: rgba($tone-light);
+  text-shadow: inset 1px 1px $tone-medium;
+  background-color: $colour-dark-blue;
+  padding: 0.5em 2em;
+  box-shadow: 0px 1px 3px 1px rgba($tone-dark, 0.5);
+}
