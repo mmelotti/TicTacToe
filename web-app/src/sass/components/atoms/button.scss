@@ -1,0 +1,36 @@
+@import "../../definitions";
+
+@mixin buttonColouring($colour) {
+  $newColour: darken($colour, 10%);
+  background-color: $colour;
+  border-color: $newColour;
+  box-shadow: 0 0 0px 0px $colour;
+
+  &:hover {
+    box-shadow: 0 0 14px 1px $colour;
+  }
+
+  &:active {
+    box-shadow: 0 0 28px 3px $colour;
+  }
+}
+
+button {
+  display: block;
+  font-size: $base-font-size;
+  color: $tone-dark;
+  border-radius: 0.4em;
+  padding: 0.5em 2em;
+  cursor: pointer;
+  outline: none;
+  @include buttonColouring($colour-light-blue);
+  transition: box-shadow 0.2s linear;
+}
+
+button.player-1 {
+  @include buttonColouring($colour-red);
+}
+
+button.player-2 {
+  @include buttonColouring($colour-green);
+}

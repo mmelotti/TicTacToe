@@ -10,10 +10,10 @@ export default class AllComponents extends React.Component {
 
       list :[
         (<Button label="Generic button"/>),
-        (<Button label="player 1's button"/>),
-        (<Button label="Player 2's button"/>),
+        (<Button label="player 1's button" associatedTo="player-1"/>),
+        (<Button label="Player 2's button" associatedTo="player-2"/>),
       ]
-    }
+    };
   }
 
   render () {

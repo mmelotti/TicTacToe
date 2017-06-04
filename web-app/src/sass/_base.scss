@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-size: $base-font-size;
+  line-height: 1.4;
+  background-color: $tone-light;
+  border-bottom: 2px solid $colour-light-blue;
+  min-height: 100%;
+  position: absolute;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+p, ul, ol, table {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+ol,
+ul {
+  > li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea,
+input[type="submit"],
+button {
+  padding: 0.5em 2em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: $colour-dark-blue;
+  background-color: #fff;
+  border-radius: 0.4em;
+  font-size: $base-font-size;
+}

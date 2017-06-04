@@ -5,15 +5,17 @@ export default class Button extends React.Component {
     super(props);
 
     this.state = {
-      label: props.label
+      label: props.label,
+      associatedTo: props.associatedTo,
     };
 
   }
 
   render () {
     const state = this.state;
+
     return (
-        <button type="button">{state.label}</button>
+        <button type="button" className={state.associatedTo}>{state.label}</button>
     );
   }
 }
