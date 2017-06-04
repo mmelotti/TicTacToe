@@ -9,24 +9,9 @@ export default class AllComponents extends React.Component {
     this.state = {
 
       list :[
-        {
-          'name': 'Button',
-          'props': {
-            'label': 'Generic button'
-          }
-        },
-        {
-          'name': 'Button',
-          'props': {
-            'label': 'player 1\'s button'
-          }
-        },
-        {
-          'name': 'Button',
-          'props': {
-            'label': 'Player 2\'s button'
-          }
-        }
+        (<Button label="Generic button"/>),
+        (<Button label="player 1's button"/>),
+        (<Button label="Player 2's button"/>),
       ]
     }
   }
@@ -36,9 +21,7 @@ export default class AllComponents extends React.Component {
     return (
       <ul>
         {list.map((comp,i) => (
-          <li key={i}>
-            <Button {...comp.props}/>
-          </li>
+          <li key={i}>{comp}</li>
         ))}
       </ul>
     );
