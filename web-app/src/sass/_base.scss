@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+main {
+  padding: 2em 2em;
+}
+
 p, ul, ol, table {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -45,7 +49,7 @@ ul {
 
 ol.all-components {
   list-style: none;
-  padding: 2em;
+  padding: 0;
   li {
     margin: 2em 0;
   }
