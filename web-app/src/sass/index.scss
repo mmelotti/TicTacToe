@@ -1,8 +1,11 @@
 @import "definitions";
 @import "base";
+
 @import "components/atoms/button";
 @import "components/atoms/field";
+@import "components/atoms/game-tile";
 
 @import "components/molecules/labeled-click-field";
+@import "components/molecules/game-board";
 
 @import "components/organisms/page-header";

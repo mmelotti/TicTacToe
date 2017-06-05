@@ -1,0 +1,40 @@
+@import "../../definitions";
+
+
+$gameTileDim: 4em;
+
+.game-tile {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    width: $gameTileDim;
+    height: $gameTileDim;
+    border-radius: 0.5em;
+    border-width: 0.25em;
+    border-style: solid;
+    border-color: $tone-medium;
+    display: block;
+    margin: 0.35em;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:disabled ~ label {
+    background-color: $tone-light;
+    cursor: not-allowed;
+  }
+}
+
+.game-tile[data-associated-to="player-1"] {
+  input[type="checkbox"]:checked ~ label {
+    border-color: $colour-red;
+  }
+}
+
+
+.game-tile[data-associated-to="player-2"] {
+  input[type="checkbox"]:checked ~ label {
+    border-color: $colour-green;
+  }
+}

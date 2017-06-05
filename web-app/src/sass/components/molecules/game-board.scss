@@ -1,0 +1,23 @@
+@import "../../definitions";
+
+.game-board {
+  div {
+    display: flex;
+
+    .game-tile {
+      flex: 0 0 0;
+    }
+  }
+}
+
+.game-board[data-owned-by="player-1"] {
+  .game-tile[data-assosiciated-to="player-2"] label {
+
+  }
+}
+
+.game-board[data-owned-by="player-2"] {
+  .game-tile[data-assosiciated-to="player-1"] label {
+    
+  }
+}

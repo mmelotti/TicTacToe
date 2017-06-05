@@ -4,6 +4,7 @@ import Button from './atoms/Button';
 import Field from './atoms/Field';
 import Label from './atoms/Label';
 import LabeledClickField from './molecules/LabeledClickField';
+import GameBoard from './molecules/GameBoard';
 
 export default class AllComponents extends React.Component {
   constructor() {
@@ -37,6 +38,7 @@ export default class AllComponents extends React.Component {
         {
           'name': 'Organisms',
           'list':[
+            (<GameBoard playerInTurn="player-1"/>)
           ]
         },
       ]
