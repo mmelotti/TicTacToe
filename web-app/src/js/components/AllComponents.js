@@ -3,6 +3,7 @@ import React from 'react';
 import Button from './atoms/Button';
 import Field from './atoms/Field';
 import Label from './atoms/Label';
+import LabeledClickField from './molecules/LabeledClickField';
 
 export default class AllComponents extends React.Component {
   constructor() {
@@ -25,6 +26,12 @@ export default class AllComponents extends React.Component {
         {
           'name': 'Molecules',
           'list':[
+            (<LabeledClickField
+              labelText="This is a label"
+              buttonText="Player 1"
+              placeholder="Enter your screen name..."
+              associatedTo="player-1"
+             />)
           ]
         },
         {

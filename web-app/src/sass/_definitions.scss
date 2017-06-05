@@ -43,3 +43,8 @@ $base-font-size: 20px;
 
 $base-font: 'Slabo 27px', sans-serif;
 $heading-font: 'Delius Swash Caps', cursive;
+
+// easing functions:
+
+$easeOutExp: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easeNBounce: cubic-bezier(0.675, 1.055, 0.810, 1.170);

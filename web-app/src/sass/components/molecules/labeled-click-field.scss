@@ -1,0 +1,28 @@
+@import "../../definitions";
+
+.labeled-click-field {
+  display: block;
+  position: relative;
+
+  >  label,
+  > .field,
+  > button {
+    width: 100%;
+  }
+
+  .field {
+    padding-left: calc(10em + 1em);
+  }
+
+  > button {
+    position: absolute;
+    bottom: 0;
+    transition: border-radius 0.5s linear, width 700ms $easeNBounce;
+  }
+}
+
+.labeled-click-field.collapsed > button {
+  width: 10em;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

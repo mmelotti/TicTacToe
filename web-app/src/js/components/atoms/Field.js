@@ -7,9 +7,17 @@ export default class Field extends React.Component {
     this.state = {
       value: (props.value) ? props.value : "",
       associatedTo: props.associatedTo,
-      placeholder: (props.placeholder)? props.placeholder: "Type something..."
+      placeholder: (props.placeholder)? props.placeholder: "Type something...",
+      id: props.id,
+      focus: props.focus,
     };
 
+  }
+
+  componentDidUpdate () {
+    if(this.props.focus) {
+      this.nameInput.focus();
+    }
   }
 
   render () {
@@ -18,6 +26,8 @@ export default class Field extends React.Component {
 
     return (
         <input type="text"
+          ref={(input) => { this.nameInput = input; }}
+          id={state.id}
           className={classNames}
           defaultValue={state.value}
           placeholder={state.placeholder}/>
