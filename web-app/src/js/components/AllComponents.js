@@ -5,6 +5,7 @@ import Field from './atoms/Field';
 import Label from './atoms/Label';
 import LabeledClickField from './molecules/LabeledClickField';
 import GameBoard from './molecules/GameBoard';
+import PerformanceIndicator from './molecules/PerformanceIndicator';
 
 export default class AllComponents extends React.Component {
   constructor() {
@@ -38,7 +39,8 @@ export default class AllComponents extends React.Component {
         {
           'name': 'Organisms',
           'list':[
-            (<GameBoard playerInTurn="player-1"/>)
+            (<GameBoard playerInTurn="player-1"/>),
+            (<PerformanceIndicator playerInTurn="player-1" associatedTo="player-1"/>),
           ]
         },
       ]
