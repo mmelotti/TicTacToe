@@ -4,10 +4,8 @@
   box-sizing: border-box;
 }
 
-
-
 body {
-  font-size: $base-font-size;
+  font-size: 1.5em;
   font-family: $base-font;
   line-height: 1.4;
   background-color: $tone-light;
@@ -43,7 +41,7 @@ h1, h2, h3 {
   .sub-heading {
     display: block;
     font-family: $base-font;
-    font-size: $base-font-size;
+    font-size: 1rem;
     font-weight: 400;
   }
 }
@@ -78,7 +76,7 @@ button {
   border-color: $colour-dark-blue;
   background-color: lighten($tone-light, 3%);
   border-radius: 0.4em;
-  font-size: $base-font-size;
+  font-size: 1.5rem;
   font-family: 'Slabo 27px', serif;
 }
 
