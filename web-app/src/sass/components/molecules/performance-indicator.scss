@@ -1,7 +1,9 @@
 
 
 .performance-indicator {
-  caption, table {
+  font-size: 0.7em;
+  
+  figcaption, table {
     width: 100%;
   }
 
@@ -10,6 +12,7 @@
 
     th {
       border-bottom: 2px solid $tone-medium;
+      transition: border 0.2s linear;
     }
 
     td, th {
@@ -34,5 +37,15 @@
         display: block;
       }
     }
+  }
+
+  &.player-1.is-in-turn th {
+    border-width: 3px;
+    border-color: $colour-red;
+  }
+
+  &.player-2.is-in-turn th {
+    border-width: 3px;
+    border-color: $colour-green;
   }
 }

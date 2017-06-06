@@ -56,11 +56,13 @@ export default class PerformanceIndicator extends React.Component {
     const props = this.props;
     const state = this.state;
     const self = this;
-
+    const playerIsInTurn = (this.state.playerInTurn === props.associatedTo);
+    const inTurn = (playerIsInTurn ? 'is-in-turn': '');
+    const classNames = `performance-indicator ${props.associatedTo} ${inTurn}`;
     return (
-      <figure className="performance-indicator" data-owned-by={props.playerInTurn}>
+      <figure className={classNames}>
         <figcaption>Wiph van Winkle</figcaption>
-        <table>1
+        <table>
           <tbody>
             <tr>
               <th>Points</th>

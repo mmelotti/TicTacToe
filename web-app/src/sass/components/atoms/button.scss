@@ -27,8 +27,12 @@ button {
   padding: 0.5em 2em;
   cursor: pointer;
   outline: none;
-  @include buttonColouring($colour-light-blue);
+  @include buttonColouring($tone-light);
   transition: box-shadow 0.2s linear;
+}
+
+button.is-cta {
+  @include buttonColouring($colour-light-blue);
 }
 
 button.player-1 {

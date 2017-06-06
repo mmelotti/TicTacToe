@@ -1,0 +1,14 @@
+.game-play {
+  .turn-indicators {
+    display: flex;
+    align-items: flex-end;
+
+    .performance-indicator {
+      flex: 1 0 0;
+    }
+  }
+
+  .game-board {
+    display: inline-block;
+  }
+}

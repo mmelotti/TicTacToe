@@ -11,7 +11,7 @@ export default class GameBoard extends React.Component {
   render () {
     const props = this.props;
     return (
-      <form className="game-board" data-owned-by={props.playerInTurn}>
+      <div className="game-board" data-owned-by={props.playerInTurn}>
         <div>
           <GameTile associatedTo="player-1" playerInTurn={props.playerInTurn}/>
           <GameTile associatedTo="player-2" playerInTurn={props.playerInTurn}/>
@@ -27,7 +27,7 @@ export default class GameBoard extends React.Component {
           <GameTile />
           <GameTile />
         </div>
-      </form>
+      </div>
     );
   }
 }
