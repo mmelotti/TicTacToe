@@ -18,10 +18,13 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 main {
   padding: 2em 2em;
+  overflow-y: auto;
+  height: calc(100% - 3em);
 }
 
 p, ul, ol, table, figure {

@@ -11,5 +11,28 @@
     th {
       border-bottom: 2px solid $tone-medium;
     }
+
+    td, th {
+      padding: 0.25em 1em;
+    }
+  }
+
+  .rating {
+    .visual {
+      display: inline-flex;
+      flex-wrap: nowrap;
+
+      $bubble-dim: 1em;
+
+      .bubble {
+        flex: 0 0 auto;
+        width: $bubble-dim;
+        height: $bubble-dim;
+        margin: $bubble-dim/4 $bubble-dim/4 $bubble-dim/4 0;
+        border-radius: $bubble-dim/2;
+        border: 2px solid $tone-medium;
+        display: block;
+      }
+    }
   }
 }
