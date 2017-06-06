@@ -30,7 +30,7 @@ gulp.task('build-kitchen-sink-js', function() {
 });
 
 gulp.task('build-styling', function() {
-  gulp.src('web-app/src/sass/**/*.scss')
+  gulp.src('web-app/src/sass/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./web-app/build/css/'));
 });

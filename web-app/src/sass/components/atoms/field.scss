@@ -1,4 +1,4 @@
-@import "../../definitions";
+
 
 @mixin fieldColouring($colour) {
   $newColour: darken($colour, 10%);
