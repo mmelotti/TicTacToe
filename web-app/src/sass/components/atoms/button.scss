@@ -1,5 +1,7 @@
 @import "../../definitions";
 
+$shadowSpread: 1em;
+
 @mixin buttonColouring($colour) {
   $newColour: darken($colour, 10%);
   background-color: $colour;
@@ -7,17 +9,19 @@
   box-shadow: 0 0 0px 0px $colour;
 
   &:hover {
-    box-shadow: 0 0 14px 1px $colour;
+    box-shadow: 0 0 $shadowSpread 1px $colour;
   }
 
   &:active {
-    box-shadow: 0 0 28px 3px $colour;
+    box-shadow: 0 0 $shadowSpread*2 3px $colour;
+  }
+  &[type="submit"]:active {
+    box-shadow: 0 0 $shadowSpread*3 1em $colour;
   }
 }
 
 button {
   display: block;
-  font-size: $base-font-size;
   color: $tone-dark;
   border-radius: 0.4em;
   padding: 0.5em 2em;
@@ -33,4 +37,8 @@ button.player-1 {
 
 button.player-2 {
   @include buttonColouring($colour-green);
+}
+
+button[type="submit"]:active {
+  box-shadow-spread: $shadowSpread*3;
 }

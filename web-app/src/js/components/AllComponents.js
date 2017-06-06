@@ -31,7 +31,7 @@ export default class AllComponents extends React.Component {
             (<LabeledClickField
               labelText="This is a label"
               buttonText="Player 1"
-              placeholder="Enter your screen name..."
+              placeholder="Enter your name..."
               associatedTo="player-1"
              />)
           ]

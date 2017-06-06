@@ -71,7 +71,7 @@ textarea,
 input[type="submit"],
 button {
   display: block;
-  width: auto;
+  width: 100%;
   padding: 0.5em 1em;
   border-width: 2px;
   border-style: solid;
@@ -80,4 +80,13 @@ button {
   border-radius: 0.4em;
   font-size: $base-font-size;
   font-family: 'Slabo 27px', serif;
+}
+
+main {
+  max-width: 25em;
+  margin: auto;
+
+  > section.view {
+    text-align: center;
+  }
 }

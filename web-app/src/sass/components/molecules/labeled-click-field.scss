@@ -1,8 +1,11 @@
 @import "../../definitions";
 
+$collapsedButtonWidth: 6.5em;
+
 .labeled-click-field {
   display: block;
   position: relative;
+  margin: 2em 0;
 
   >  label,
   > .field,
@@ -10,19 +13,26 @@
     width: 100%;
   }
 
+  label {
+    margin: 1em 0;
+    display: block;
+  }
+
   .field {
-    padding-left: calc(10em + 1em);
+    padding-left: $collapsedButtonWidth + 1em;
   }
 
   > button {
     position: absolute;
+    padding-left: 1em;
+    padding-right: 1em;
     bottom: 0;
     transition: border-radius 0.5s linear, width 700ms $easeNBounce;
   }
 }
 
 .labeled-click-field.collapsed > button {
-  width: 10em;
+  width: $collapsedButtonWidth;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
