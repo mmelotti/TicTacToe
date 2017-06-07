@@ -10,6 +10,8 @@ export default class Field extends React.Component {
       placeholder: (props.placeholder)? props.placeholder: "Type something...",
       id: props.id,
       focus: props.focus,
+      enteredValue: "",
+      onChangeHandler: props.onChangeHandler,
     };
 
   }
@@ -30,7 +32,8 @@ export default class Field extends React.Component {
           id={state.id}
           className={classNames}
           defaultValue={state.value}
-          placeholder={state.placeholder}/>
+          placeholder={state.placeholder}
+          onChange={state.onChangeHandler}/>
     );
   }
 }

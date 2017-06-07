@@ -9,7 +9,7 @@ export default class Button extends React.Component {
     if(!validType) {
       console.error('props.type did not a valid type, only submit and button are allowed. Defaults to button.');
     }
-    
+
     this.state = {
       label: props.label,
       associatedTo: props.associatedTo,
@@ -26,7 +26,8 @@ export default class Button extends React.Component {
   render () {
     const state = this.state;
     const props = this.props;
-    const classNames = `${state.associatedTo} ${props.isCTA ? 'is-cta': ''}`;
+    const playerId = (state.associatedTo? state.associatedTo.getId() : '');
+    const classNames = `${playerId} ${props.isCTA ? 'is-cta': ''}`;
     return (
         <button type={(!props.type) ? "button" : props.type}
           onClick={this.state.clickCallback}

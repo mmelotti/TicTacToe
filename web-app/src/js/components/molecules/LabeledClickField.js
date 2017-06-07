@@ -19,6 +19,7 @@ export default class LabeledClickField extends React.Component {
     };
 
     this.toggleButton = this.toggleButton.bind(this);
+    this.fieldChangeHandler = this.fieldChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -48,8 +49,13 @@ export default class LabeledClickField extends React.Component {
     return this.state.associatedTo;
   }
 
+  fieldChangeHandler (eventObj) {
+    this.state.associatedTo.name = eventObj.target.value;
+  }
+
   render () {
     const state = this.state;
+    const self = this;
     const classNames = "labeled-click-field " + (state.buttonCollapsed ? 'collapsed': '');
     return (
       <div className={classNames}>
@@ -59,7 +65,8 @@ export default class LabeledClickField extends React.Component {
           value={state.value}
           focus={state.fieldFocused}
           placeholder={state.placeholder}
-          associatedTo={state.associatedTo}/>
+          associatedTo={state.associatedTo}
+          onChangeHandler={self.fieldChangeHandler}/>
         <Button associatedTo={state.associatedTo}
           label={state.buttonText}
           clickCallback={this.toggleButton}
