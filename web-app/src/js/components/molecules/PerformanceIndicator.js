@@ -17,6 +17,7 @@ export default class PerformanceIndicator extends React.Component {
       playerInTurn: props.playerInTurn,
       remainingTime: this.initialTime, // in seconds
       rating: this.initialRating, // starting rate.
+      playerIsInTurn: (props.gameEngine.playerInTurn === props.associatedTo),
     };
 
     this.bubbles = Array.from({length: this.initialRating}, (v, i) => i+1);
@@ -34,34 +35,41 @@ export default class PerformanceIndicator extends React.Component {
       remainingTime: (this.state.remainingTime - 1)
     });
 
-    if(this.state.remainingTime === 0) {
-      this.stop();
+    if(this.state.remainingTime <= 0) {
+      this.pause();
     } else {
       this.updateRating();
     }
   }
   start () {
-    this.ticker = setInterval(() => this.updateTime(), 1000);
+    const self = this;
+    this.ticker = setInterval(() => (self.updateTime()), 1000);
   }
 
-  stop () {
+  pause () {
     clearInterval(this.ticker);
+    console.log(this.ticker);
   }
 
   componentDidMount () {
-    this.start();
+    if (this.state.playerIsInTurn) {
+      this.start();
+    }
+  }
+
+  componentDidUpdate (nextProps,nexState) {
+
   }
 
   render () {
     const props = this.props;
     const state = this.state;
     const self = this;
-    const playerIsInTurn = (this.state.playerInTurn === props.associatedTo);
-    const inTurn = (playerIsInTurn ? 'is-in-turn': '');
-    const classNames = `performance-indicator ${props.associatedTo} ${inTurn}`;
+    const inTurn = (state.playerIsInTurn ? 'is-in-turn': '');
+    const classNames = `performance-indicator ${props.associatedTo.getId()} ${inTurn}`;
     return (
       <figure className={classNames}>
-        <figcaption>Wiph van Winkle</figcaption>
+        <figcaption>{state.associatedTo.name}</figcaption>
         <table>
           <tbody>
             <tr>

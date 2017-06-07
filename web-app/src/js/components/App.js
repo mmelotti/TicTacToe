@@ -4,6 +4,9 @@ import PlayerSelection from './organisms/PlayerSelection';
 import GamePlay from './organisms/GamePlay';
 import HallOfFame from './organisms/HallOfFame';
 
+import Player from './../logic/Player';
+import Game from './../logic/Game';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -11,24 +14,34 @@ export default class App extends React.Component {
     this.onGameRequested = this.onGameRequested.bind(this);
     this.onHallOfGameRequested = this.onHallOfGameRequested.bind(this);
 
+    const player1 = new Player();
+    const player2 = new Player();
+    this._gameEngine = new Game();
+    this._gameEngine.addPlayer(player1);
+    this._gameEngine.addPlayer(player2);
+    this._gameEngine.start();
+
     this.state = {
       currentView: <PlayerSelection
         submitCallback={this.onGameRequested}
-        goToHallOfFame={this.onHallOfGameRequested}/>
+        goToHallOfFame={this.onHallOfGameRequested}
+        gameEngine={this._gameEngine}/>,
     };
   }
 
   onGameRequested (e) {
     this.setState({
       currentView: <GamePlay
-        gameWin={this.onHallOfGameRequested}/>
+        gameWin={this.onHallOfGameRequested}
+        gameEngine={this._gameEngine}/>
     });
   }
 
   onHallOfGameRequested () {
     this.setState({
       currentView: <HallOfFame
-        replay={this.onGameRequested} />
+        replay={this.onGameRequested}
+        gameEngine={this._gameEngine}/>
     });
   }
 
