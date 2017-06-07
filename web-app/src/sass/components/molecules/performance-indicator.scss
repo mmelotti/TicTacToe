@@ -3,6 +3,10 @@
 .performance-indicator {
   font-size: 0.7em;
 
+  figcaption {
+    font-size: 1.2em;
+  }
+
   figcaption, table {
     width: 100%;
   }
@@ -77,13 +81,28 @@
     }
   }
 
-  &.player-1.is-in-turn th {
-    border-width: 3px;
-    border-color: $colour-red;
+  &.player-1.is-in-turn {
+
+    figcaption {
+      color: darken($colour-red, 20%);
+    }
+
+    th {
+      border-width: 3px;
+      border-color: $colour-red;
+    }
   }
 
-  &.player-2.is-in-turn th {
-    border-width: 3px;
-    border-color: $colour-green;
+  &.player-2.is-in-turn {
+
+    figcaption {
+      color: darken($colour-green, 20%);
+
+    }
+
+    th {
+      border-width: 3px;
+      border-color: $colour-green;
+    }
   }
 }

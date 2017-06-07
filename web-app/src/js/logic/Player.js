@@ -2,6 +2,7 @@ export default class Player {
   constructor() {
 
     this._name = null;
+    this._avatar = null;
     this._dummyName = this._generateRandomName();
     this.id = null;
     this.score = 0;
@@ -21,6 +22,14 @@ export default class Player {
 
   get name () {
     return (this._name ? this._name : this._dummyName);
+  }
+
+  set avatar (avatar) {
+    this._avatar = avatar;
+  }
+
+  get avatar () {
+    return `img/avatars/${this._avatar}.svg`;
   }
 
   _generateRandomName () {

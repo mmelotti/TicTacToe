@@ -21,6 +21,10 @@ $gameTileDim: 4em;
     cursor: pointer;
     transition: background-color 0.3s linear, border 0.3s linear;
 
+    img {
+      width: 3em;
+      margin: 0.25em;
+    }
   }
 
   input[type="checkbox"]:disabled ~ label {

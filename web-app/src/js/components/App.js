@@ -15,7 +15,10 @@ export default class App extends React.Component {
     this.onHallOfGameRequested = this.onHallOfGameRequested.bind(this);
 
     const player1 = new Player();
+    player1.avatar = 'fox';
     const player2 = new Player();
+    player2.avatar = 'sheep';
+
     this._gameEngine = new Game();
     this._gameEngine.addPlayer(player1);
     this._gameEngine.addPlayer(player2);

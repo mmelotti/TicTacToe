@@ -78,7 +78,7 @@ export default class Game extends EventEmitter {
     let winningPattern = [];
     const found = winningPatterns.some(function (pattern) {
       var found = pattern.every(function(coordinates) {
-        const tile = board[coordinates[0]][coordinates[1]];
+        const tile = self.getTile(coordinates);
         return tile.associatedTo === self.playerInTurn;
       });
       if(found) {

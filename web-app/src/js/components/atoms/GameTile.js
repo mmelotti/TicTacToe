@@ -36,6 +36,7 @@ export default class GameTile extends React.Component {
     const self = this;
     const playerId = state.associatedTo ? state.associatedTo.getId():'';
     const winner = state.winner ? 'winner':'';
+    const playerAvatar = (state.associatedTo)? (<img src={state.associatedTo.avatar}/>) : '';
     const classNames = `game-tile ${playerId} ${winner}`;
     return (
       <div className={classNames}>
@@ -46,6 +47,7 @@ export default class GameTile extends React.Component {
           onChange={self.changeHandler}
         ></input>
         <label htmlFor={state.id}>
+          {playerAvatar}
         </label>
       </div>
     );
