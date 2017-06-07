@@ -8,6 +8,7 @@ $gameTileDim: 4em;
     display: none;
   }
 
+
   label {
     width: $gameTileDim;
     height: $gameTileDim;
@@ -18,23 +19,28 @@ $gameTileDim: 4em;
     display: block;
     margin: 0.35em;
     cursor: pointer;
+    transition: background-color 0.3s linear, border 0.3s linear;
+
   }
 
   input[type="checkbox"]:disabled ~ label {
-    background-color: $tone-light;
-    cursor: not-allowed;
+    cursor: default;
   }
 }
 
-.game-tile[data-associated-to="player-1"] {
-  label {
-    border-color: $colour-red;
-  }
+.game-tile.player-1  label {
+  border-color: $colour-red;
+}
+
+.game-tile.player-1.winner  label{
+  background-color: lighten($colour-red, 20%);
 }
 
 
-.game-tile[data-associated-to="player-2"] {
-  label {
-    border-color: $colour-green;
-  }
+.game-tile.player-2  label {
+  border-color: $colour-green;
+}
+
+.game-tile.player-2.winner label {
+  background-color: lighten($colour-green, 20%);
 }

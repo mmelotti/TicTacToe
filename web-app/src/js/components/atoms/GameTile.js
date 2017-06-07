@@ -9,6 +9,7 @@ export default class GameTile extends React.Component {
       associatedTo: props.associatedTo,
       changeHandler: props.changeHandler,
       coordinates: props.coordinates,
+      winner: false,
       id: "game-tile-" + Date.now(),
     }
 
@@ -26,15 +27,18 @@ export default class GameTile extends React.Component {
   componentWillReceiveProps (nextProps) {
     this.setState({
       associatedTo: nextProps.associatedTo,
+      winner: nextProps.winner,
     });
   }
 
   render () {
     const state = this.state;
     const self = this;
+    const playerId = state.associatedTo ? state.associatedTo.getId():'';
+    const winner = state.winner ? 'winner':'';
+    const classNames = `game-tile ${playerId} ${winner}`;
     return (
-      <div className="game-tile"
-        data-associated-to={state.associatedTo ? state.associatedTo.getId():''}>
+      <div className={classNames}>
         <input type="checkbox"
           id={state.id}
           checked={state.associatedTo?'checked':''}

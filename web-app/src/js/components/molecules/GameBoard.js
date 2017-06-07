@@ -28,7 +28,8 @@ export default class GameBoard extends React.Component {
             coordinates={[i,ii]}
             associatedTo={tile.associatedTo}
             gameEngine={state.gameEngine}
-            changeHandler={self.tileClicked}/>
+            changeHandler={self.tileClicked}
+            winner={tile.winner}/>
         ))}
       </div>
     ));

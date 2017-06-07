@@ -18,6 +18,8 @@ export default class Game extends EventEmitter {
     this.event = {
       stop:"game-stop",
       playerSwitched:"game-player-switched",
+      playerHasWon: "game-player-has-won",
+      nobodyHasWon: "game-nobody-has-won",
     };
   }
 
@@ -34,27 +36,67 @@ export default class Game extends EventEmitter {
   getBoard () {
     return this._board;
   }
+  getTile(coordinates) {
+    return this._board[coordinates[0]][coordinates[1]];
+  }
 
   updateBoard (coordinates) {
 
-    this._board[coordinates[0]][coordinates[1]].associatedTo = this.playerInTurn;
+    this.getTile(coordinates).associatedTo = this.playerInTurn;
 
-    if (this.currentPlayerHasWon()) {
-
+    if (this.hasCurrentPlayerWon()) {
+      //this.recordScore(this.playerInTurn);
+      this.emit(this.event.playerHasWon, {
+        winner: this.playerInTurn
+      });
+      this.stop();
     } else if (this.anyOpenTilesLeft()) {
       this.newTurn();
     } else {
-      this.recordScore(this.playerInTurn);
+      this.emit(this.event.nobodyHasWon);
       this.stop();
     }
   }
-  currentPlayerHasWon () {
-    // check board
-    const hasWon = false;
-    return hasWon;
+
+  hasCurrentPlayerWon () {
+    const winningPatterns = [
+      // rows:
+      [ [0,0],[0,1],[0,3] ],
+      [ [1,0],[1,1],[1,3] ],
+      [ [2,0],[2,1],[2,3] ],
+      //columns:
+      [ [0,0],[1,0],[2,0] ],
+      [ [0,1],[1,1],[2,1] ],
+      [ [0,2],[1,2],[2,2] ],
+      // diagonals
+      [ [0,0],[1,1],[2,2] ],
+      [ [0,2],[1,1],[2,0] ],
+    ];
+
+    const self = this;
+    const board = this.getBoard();
+    let winningPattern = [];
+    const found = winningPatterns.some(function (pattern) {
+      var found = pattern.every(function(coordinates) {
+        const tile = board[coordinates[0]][coordinates[1]];
+        return tile.associatedTo === self.playerInTurn;
+      });
+      if(found) {
+        winningPattern = pattern;
+      }
+      return found;
+    });
+
+    winningPattern.forEach(function(coor) {
+      this.getTile(coor).winner = true;
+    }, this);
+    console.log(this._board);
+
+    return found;
   }
 
   anyOpenTilesLeft () {
+    // check board
     return true;
   }
 

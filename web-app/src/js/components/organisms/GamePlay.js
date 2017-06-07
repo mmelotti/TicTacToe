@@ -14,6 +14,7 @@ export default class PlayerSelection extends React.Component {
 
     this.gameHasUpdated = this.gameHasUpdated.bind(this);
     this.state.gameEngine.addListener('game-player-switched', this.gameHasUpdated);
+    this.state.gameEngine.addListener('game-player-has-won', this.gameHasUpdated);
   }
 
   gameHasUpdated () {
