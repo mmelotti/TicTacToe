@@ -7,20 +7,31 @@ import Button from './../atoms/Button';
 export default class PlayerSelection extends React.Component {
   constructor(props) {
     super(props);
-    this._gameEngine = props.gameEngine;
-    this.state = {};
+
+    this.state = {
+      gameEngine: props.gameEngine
+    };
+
+    this.gameHasUpdated = this.gameHasUpdated.bind(this);
+    this.state.gameEngine.addListener('game-player-switched', this.gameHasUpdated);
+  }
+
+  gameHasUpdated () {
+    this.setState({
+      gameEngine: this.state.gameEngine
+    });
   }
 
   render () {
-    const props = this.props;
-    const gameEngine = this._gameEngine;
+    const state = this.state;
+
     return (
       <section className="view game-play">
         <div className="turn-indicators">
-          <PerformanceIndicator gameEngine={gameEngine} associatedTo={gameEngine.getPlayer(1)}/>
-          <PerformanceIndicator gameEngine={gameEngine} associatedTo={gameEngine.getPlayer(2)}/>
+          <PerformanceIndicator gameEngine={state.gameEngine} associatedTo={state.gameEngine.getPlayer(1)}/>
+          <PerformanceIndicator gameEngine={state.gameEngine} associatedTo={state.gameEngine.getPlayer(2)}/>
         </div>
-        <GameBoard/>
+        <GameBoard gameEngine={state.gameEngine}/>
       </section>
     );
   }

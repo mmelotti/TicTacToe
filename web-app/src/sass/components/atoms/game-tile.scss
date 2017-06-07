@@ -27,14 +27,14 @@ $gameTileDim: 4em;
 }
 
 .game-tile[data-associated-to="player-1"] {
-  input[type="checkbox"]:checked ~ label {
+  label {
     border-color: $colour-red;
   }
 }
 
 
 .game-tile[data-associated-to="player-2"] {
-  input[type="checkbox"]:checked ~ label {
+  label {
     border-color: $colour-green;
   }
 }

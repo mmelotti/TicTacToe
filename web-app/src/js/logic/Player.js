@@ -4,6 +4,7 @@ export default class Player {
     this._name = null;
     this._dummyName = this._generateRandomName();
     this.id = null;
+    this.score = 0;
   }
 
   getId () {

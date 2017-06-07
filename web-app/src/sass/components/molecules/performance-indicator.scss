@@ -2,7 +2,7 @@
 
 .performance-indicator {
   font-size: 0.7em;
-  
+
   figcaption, table {
     width: 100%;
   }
@@ -20,6 +20,44 @@
     }
   }
 
+  @keyframes penaltyAnimation {
+    0% {
+      opacity: 0;
+      bottom: 0;
+    }
+
+    33% {
+      opacity: 1;
+      bottom: 1em;
+    }
+
+  66% {
+      opacity: 0.66;
+      bottom: 2em;
+    }
+
+    100% {
+      opacity: 0;
+      bottom: 3em;
+    }
+  }
+
+  .points {
+    position: relative;
+
+    em {
+      position: absolute;
+      bottom: 0;
+      left: 55%;
+      width: 3em;
+      opacity: 0;
+      color: $colour-dark-blue;
+      animation-name: penaltyAnimation;
+      animation-duration: 2s;
+      animation-direction:normal;
+      animation-timing-function: ease-out;
+    }
+  }
   .rating {
     .visual {
       display: inline-flex;

@@ -15,6 +15,7 @@
   "author": "Sanne Peters <sanne@sanstream.nl> (http://www.sanstream.nl)",
   "license": "MIT",
   "dependencies": {
+    "eventemitter3": "^2.0.3",
     "express.js": "^1.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
