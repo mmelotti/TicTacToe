@@ -19,6 +19,12 @@ body {
   overflow: hidden;
 }
 
+@media (min-width:800px) {
+  body {
+    font-size: 1.5em;
+  }
+}
+
 main {
   padding: 2em 2em;
   overflow-y: auto;
@@ -78,6 +84,17 @@ button {
   border-radius: 0.4em;
   font-size: 2.5rem;
   font-family: 'Slabo 27px', serif;
+}
+
+@media (min-width:800px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  textarea,
+  input[type="submit"],
+  button {
+    font-size: 1.5rem;
+  }
 }
 
 main {
