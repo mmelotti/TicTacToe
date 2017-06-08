@@ -49,6 +49,12 @@ export default class PerformanceIndicator extends React.Component {
   pause () {
     clearInterval(this.ticker);
     this.updateTime(60,true);
+    this.state.associatedTo.points = this.state.remainingTime;
+  }
+
+  stop () {
+    clearInterval(this.ticker);
+    this.state.associatedTo.points = this.state.remainingTime;
   }
 
   componentDidMount () {
@@ -71,7 +77,7 @@ export default class PerformanceIndicator extends React.Component {
     });
 
     if (nextProps.timeStopped) {
-      this.pause();
+      this.stop();
     }
   }
 

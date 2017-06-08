@@ -1,0 +1,16 @@
+.hall-of-fame {
+  em {
+    float: right;
+  }
+  ol {
+    padding-left: 1em;
+  }
+
+  p, li {
+    text-align: left;
+  }
+
+  li.newly-added {
+    font-weight: bold;
+  }
+}

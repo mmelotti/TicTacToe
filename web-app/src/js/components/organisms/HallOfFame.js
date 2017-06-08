@@ -7,29 +7,7 @@ export default class HallOfFame extends React.Component {
 
     this.state = {
       replay: props.replay,
-      highScores: [
-        {
-          name: "Henk Paarsen",
-          points: 345,
-        },
-        {
-          name: "Henk Paarsen",
-          points: 345,
-        },
-        {
-          name: "Henk Paarsen",
-          points: 345,
-        },
-        {
-          name: "Henk Paarsen",
-          points: 345,
-        },
-        {
-          name: "Henk Paarsen",
-          points: 345,
-        },
-        {}, {}, {}, {}, {},
-      ]
+      highScores: props.highScores,
     };
   }
 
@@ -37,8 +15,9 @@ export default class HallOfFame extends React.Component {
     const props = this.props;
     const state = this.state;
 
-    const highScores = state.highScores.map((score,i) => (
-      (score.name ? (<li key={i}>
+    const highScores = state.highScores.list.map((score,i) => (
+      (score ? (<li key={i}
+        className={state.highScores.newestScoreAdded === score ? 'newly-added' : ''}>
         <span className="name">
           {score.name}
         </span>
@@ -48,16 +27,22 @@ export default class HallOfFame extends React.Component {
 
     return (
       <section className="view hall-of-fame">
-
         <h1>Hall of Fame</h1>
-
+        <p>
+          <span className="name">
+            <strong>Name</strong>
+          </span>
+          <em className="score">
+            <strong>points</strong>
+          </em>
+        </p>
         <ol>
           {highScores}
         </ol>
-
         <Button
           label="Play again!"
           type="submit"
+          isCTA={true}
           clickCallback={state.replay}/>
       </section>
     );

@@ -4,7 +4,7 @@ import PerformanceIndicator from './../molecules/PerformanceIndicator';
 import GameBoard from './../molecules/GameBoard';
 import MessageBox from './../molecules/MessageBox';
 
-export default class PlayerSelection extends React.Component {
+export default class GamePlay extends React.Component {
   constructor(props) {
     super(props);
 

@@ -6,13 +6,14 @@ import HallOfFame from './organisms/HallOfFame';
 
 import Player from './../logic/Player';
 import Game from './../logic/Game';
+import HighScores from './../logic/HighScores';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.onGameRequested = this.onGameRequested.bind(this);
-    this.onHallOfGameRequested = this.onHallOfGameRequested.bind(this);
+    this.onHallOfFameRequested = this.onHallOfFameRequested.bind(this);
 
     const player1 = new Player();
     player1.avatar = 'fox';
@@ -23,10 +24,13 @@ export default class App extends React.Component {
     this._gameEngine.addPlayer(player1);
     this._gameEngine.addPlayer(player2);
 
+    this._highScores = new HighScores();
+    this._gameEngine.addHighScores(this._highScores);
+
     this.state = {
       currentView: <PlayerSelection
         submitCallback={this.onGameRequested}
-        goToHallOfFame={this.onHallOfGameRequested}
+        goToHallOfFame={this.onHallOfFameRequested}
         gameEngine={this._gameEngine}/>,
     };
   }
@@ -36,16 +40,16 @@ export default class App extends React.Component {
     this._gameEngine.start();
     this.setState({
       currentView: <GamePlay
-        gameWin={this.onHallOfGameRequested}
+        gameWin={this.onHallOfFameRequested}
         gameEngine={this._gameEngine}/>
     });
   }
 
-  onHallOfGameRequested () {
+  onHallOfFameRequested () {
     this.setState({
       currentView: <HallOfFame
         replay={this.onGameRequested}
-        gameEngine={this._gameEngine}/>
+        highScores={this._highScores}/>
     });
   }
 

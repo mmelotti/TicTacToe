@@ -42,6 +42,7 @@ export default class Game extends EventEmitter {
       let winner = null;
       if (this.hasCurrentPlayerWon()) {
         winner = this.playerInTurn;
+        this._highScores.addPlayer(this.playerInTurn);
         const loser = (this.playerInTurn === this.getPlayer(1)) ? this.getPlayer(2) : this.getPlayer(1);
         this.stop(winner, loser, false);
       } else if (this.anyOpenTilesLeft()) {
@@ -113,6 +114,10 @@ export default class Game extends EventEmitter {
     if(!(id > this._players.length)) {
       return this._players[id - 1];
     }
+  }
+
+  addHighScores (highScores) {
+    this._highScores = highScores;
   }
 
   start () {

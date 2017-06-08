@@ -5,7 +5,7 @@ export default class Player {
     this._avatar = null;
     this._dummyName = this._generateRandomName();
     this.id = null;
-    this._score = 0;
+    this._points = 0;
   }
 
   getId () {
@@ -32,12 +32,12 @@ export default class Player {
     return `img/avatars/${this._avatar}.svg`;
   }
 
-  set score (score) {
-    this._score = score;
+  set points (points) {
+    this._points = points;
   }
 
-  get score () {
-    return this._score;
+  get points () {
+    return this._points;
   }
 
   _generateRandomName () {
