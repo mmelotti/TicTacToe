@@ -38,18 +38,16 @@ export default class Game extends EventEmitter {
       this.getTile(coordinates).associatedTo = this.playerInTurn;
       let winner = null;
       if (this.hasCurrentPlayerWon()) {
-        //this.recordScore(this.playerInTurn);
         winner = this.playerInTurn;
-        this.stop();
+        const loser = (this.playerInTurn === this.getPlayer(1)) ? this.getPlayer(2) : this.getPlayer(1);
+        this.stop(winner, loser, false);
       } else if (this.anyOpenTilesLeft()) {
         this.newTurn();
       } else {
-        this.stop();
+        this.stop(null, null, true);
       }
 
-      this.emit('board changed', {
-        winner: winner
-      });
+      this.emit('board changed');
     }
   }
 
@@ -71,16 +69,13 @@ export default class Game extends EventEmitter {
     let winningPattern = [];
 
     const winningPatternFound = winningPatterns.some(function (pattern) {
-      console.log(pattern);
       const found = pattern.every(function(coordinates) {
         const tile = this.getTile(coordinates);
         if(!tile.associatedTo) {
           return false;
         }
-        console.log(tile.associatedTo.name, this.playerInTurn.name);
         return (tile.associatedTo === this.playerInTurn);
       }, this);
-      console.log(found);
 
       if(found) {
         winningPattern = pattern;
@@ -122,8 +117,12 @@ export default class Game extends EventEmitter {
     this._gameStarted = true;
   }
 
-  stop () {
-    this.emit('game stopped');
+  stop (winner, loser, gameIsTied) {
+    this.emit('game stopped', {
+      winner: winner,
+      loser: loser,
+      gameIsTied: gameIsTied,
+    });
     this.playerInTurn = null;
     this._gameStarted = false;
   }

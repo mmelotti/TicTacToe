@@ -6,41 +6,50 @@ import Label from './atoms/Label';
 import LabeledClickField from './molecules/LabeledClickField';
 import GameBoard from './molecules/GameBoard';
 import PerformanceIndicator from './molecules/PerformanceIndicator';
+import MessageBox from './molecules/MessageBox';
+
+import Player from '../logic/Player';
+import Game from '../logic/Game';
 
 export default class AllComponents extends React.Component {
   constructor() {
     super();
-
+    const player = new Player();
+    player.setId(1);
     this.state = {
       list :[
         {
           'name': 'Atoms',
           'list':[
-            (<Button label="Generic button"/>),
-            (<Button label="player 1's button" associatedTo="player-1"/>),
-            (<Button label="Player 2's button" associatedTo="player-2"/>),
-            (<Field value=""/>),
-            (<Field placeholder="player 1's field" associatedTo="player-1"/>),
-            (<Field placeholder="Player 2's field" associatedTo="player-2"/>),
-            (<Label text="This is a label" />),
+            // (<Button label="Generic button"/>),
+            // (<Button label="player 1's button" associatedTo={player}/>),
+            // (<Button label="Player 2's button" associatedTo={player}/>),
+            // (<Field value=""/>),
+            // (<Field placeholder="player 1's field" associatedTo={player}/>),
+            // (<Field placeholder="Player 2's field" associatedTo={player}/>),
+            // (<Label text="This is a label" />),
           ]
         },
         {
           'name': 'Molecules',
           'list':[
-            (<LabeledClickField
-              labelText="This is a label"
-              buttonText="Player 1"
-              placeholder="Enter your name..."
-              associatedTo="player-1"
-             />)
+            // (<LabeledClickField
+            //   labelText="This is a label"
+            //   buttonText="Player 1"
+            //   placeholder="Enter your name..."
+            //   associatedTo={player}
+            //  />),
+             (<MessageBox
+               text="A generic meaningless text that is just for testing the layout of this message box."
+               okLabel="Go to Hall of Fame"
+                cancelLabel="play again"/>),
           ]
         },
         {
           'name': 'Organisms',
           'list':[
-            (<GameBoard playerInTurn="player-1"/>),
-            (<PerformanceIndicator playerInTurn="player-1" associatedTo="player-1"/>),
+            // (<GameBoard playerInTurn={player}/>),
+            // (<PerformanceIndicator playerInTurn={player} associatedTo={player}/>),
           ]
         },
       ]

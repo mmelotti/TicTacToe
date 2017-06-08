@@ -24,7 +24,7 @@ button {
   display: block;
   color: $tone-dark;
   border-radius: 0.4em;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   cursor: pointer;
   outline: none;
   @include buttonColouring($tone-light);
