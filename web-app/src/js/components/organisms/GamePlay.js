@@ -63,6 +63,7 @@ export default class PlayerSelection extends React.Component {
           text={text}
           okCallback={self.goToHallOfFame}
           okLabel="Go to Hall of Fame"
+          associatedTo={state.winner}
           cancelCallback={self.goToHallOfFame}
           cancelLabel="play again"/>
       );

@@ -7,6 +7,7 @@ export default class LabeledClickField extends React.Component {
 
     this.state = {
       text: props.text,
+      associatedTo: props.associatedTo,
       okLabel: props.okLabel,
       okCallback: props.okCallback,
       cancelLabel: props.cancelLabel,
@@ -24,10 +25,12 @@ export default class LabeledClickField extends React.Component {
         <div className="button-bar">
           <Button
             isCTA={true}
+            associatedTo={state.associatedTo}
             label={state.okLabel}
             clickCallback={state.okCallback}
           />
           <Button
+            isCTA={true}
             label={state.cancelLabel}
             clickCallback={state.cancelCallback}
           />
