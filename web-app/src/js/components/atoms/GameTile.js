@@ -39,16 +39,10 @@ export default class GameTile extends React.Component {
     const playerAvatar = (state.associatedTo)? (<img src={state.associatedTo.avatar}/>) : '';
     const classNames = `game-tile ${playerId} ${winner}`;
     return (
-      <div className={classNames}>
-        <input type="checkbox"
-          id={state.id}
-          checked={state.associatedTo?'checked':''}
-          disabled={state.associatedTo?'disabled':''}
-          onChange={self.changeHandler}
-        ></input>
-        <label htmlFor={state.id}>
+      <div className={classNames} onClick={self.changeHandler}>
+        <div>
           {playerAvatar}
-        </label>
+        </div>
       </div>
     );
   }

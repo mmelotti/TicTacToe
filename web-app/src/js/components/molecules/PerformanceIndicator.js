@@ -21,7 +21,6 @@ export default class PerformanceIndicator extends React.Component {
     };
 
     this.bubbles = Array.from({length: this.initialRating}, (v, i) => i+1);
-    console.log(this.bubbles);
   }
 
   updateRating () {
@@ -70,6 +69,10 @@ export default class PerformanceIndicator extends React.Component {
       playerInTurn: nextProps.playerInTurn,
       playerIsInTurn: (nextProps.gameEngine.playerInTurn === nextProps.associatedTo),
     });
+
+    if (nextProps.timeStopped) {
+      this.pause();
+    }
   }
 
   render () {

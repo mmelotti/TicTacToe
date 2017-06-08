@@ -9,7 +9,7 @@ $gameTileDim: 4em;
   }
 
 
-  label {
+  div {
     width: $gameTileDim;
     height: $gameTileDim;
     border-radius: 0.5em;
@@ -26,25 +26,21 @@ $gameTileDim: 4em;
       margin: 0.25em;
     }
   }
-
-  input[type="checkbox"]:disabled ~ label {
-    cursor: default;
-  }
 }
 
-.game-tile.player-1  label {
+.game-tile.player-1  div {
   border-color: $colour-red;
 }
 
-.game-tile.player-1.winner  label{
+.game-tile.player-1.winner  div{
   background-color: lighten($colour-red, 20%);
 }
 
 
-.game-tile.player-2  label {
+.game-tile.player-2  div {
   border-color: $colour-green;
 }
 
-.game-tile.player-2.winner label {
+.game-tile.player-2.winner div {
   background-color: lighten($colour-green, 20%);
 }

@@ -12,14 +12,22 @@ export default class PlayerSelection extends React.Component {
       gameEngine: props.gameEngine
     };
 
-    this.gameHasUpdated = this.gameHasUpdated.bind(this);
-    this.state.gameEngine.addListener('game-player-switched', this.gameHasUpdated);
-    this.state.gameEngine.addListener('game-player-has-won', this.gameHasUpdated);
+    // this.state.gameEngine.addListener('game-player-switched', this.gameHasUpdated);
+    this.state.gameEngine.addListener('game stopped', this.gameHasStopped.bind(this), false);
+    this.state.gameEngine.addListener('board changed', this.gameHasUpdated.bind(this), false);
   }
 
-  gameHasUpdated () {
+  gameHasUpdated (event) {
     this.setState({
-      gameEngine: this.state.gameEngine
+      gameEngine: this.state.gameEngine,
+      winner: event.winner,
+    });
+  }
+
+  gameHasStopped (event) {
+    this.setState({
+      gameEngine: this.state.gameEngine,
+      timeStopped: true,
     });
   }
 
@@ -29,8 +37,14 @@ export default class PlayerSelection extends React.Component {
     return (
       <section className="view game-play">
         <div className="turn-indicators">
-          <PerformanceIndicator gameEngine={state.gameEngine} associatedTo={state.gameEngine.getPlayer(1)}/>
-          <PerformanceIndicator gameEngine={state.gameEngine} associatedTo={state.gameEngine.getPlayer(2)}/>
+          <PerformanceIndicator
+            timeStopped={state.timeStopped}
+            gameEngine={state.gameEngine}
+            associatedTo={state.gameEngine.getPlayer(1)}/>
+          <PerformanceIndicator
+            timeStopped={state.timeStopped}
+            gameEngine={state.gameEngine}
+            associatedTo={state.gameEngine.getPlayer(2)}/>
         </div>
         <GameBoard gameEngine={state.gameEngine}/>
       </section>

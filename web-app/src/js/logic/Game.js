@@ -14,13 +14,6 @@ export default class Game extends EventEmitter {
       [new Tile(), new Tile(), new Tile()],
       [new Tile(), new Tile(), new Tile()],
     ]
-
-    this.event = {
-      stop:"game-stop",
-      playerSwitched:"game-player-switched",
-      playerHasWon: "game-player-has-won",
-      nobodyHasWon: "game-nobody-has-won",
-    };
   }
 
   newTurn () {
@@ -29,41 +22,43 @@ export default class Game extends EventEmitter {
     } else {
       this.playerInTurn = this.getPlayer(1);
     }
-
-    this.emit(this.event.playerSwitched);
   }
 
   getBoard () {
     return this._board;
   }
+
   getTile(coordinates) {
     return this._board[coordinates[0]][coordinates[1]];
   }
 
   updateBoard (coordinates) {
 
-    this.getTile(coordinates).associatedTo = this.playerInTurn;
+    if (this._gameStarted) {
+      this.getTile(coordinates).associatedTo = this.playerInTurn;
+      let winner = null;
+      if (this.hasCurrentPlayerWon()) {
+        //this.recordScore(this.playerInTurn);
+        winner = this.playerInTurn;
+        this.stop();
+      } else if (this.anyOpenTilesLeft()) {
+        this.newTurn();
+      } else {
+        this.stop();
+      }
 
-    if (this.hasCurrentPlayerWon()) {
-      //this.recordScore(this.playerInTurn);
-      this.emit(this.event.playerHasWon, {
-        winner: this.playerInTurn
+      this.emit('board changed', {
+        winner: winner
       });
-      this.stop();
-    } else if (this.anyOpenTilesLeft()) {
-      this.newTurn();
-    } else {
-      this.emit(this.event.nobodyHasWon);
-      this.stop();
     }
   }
 
   hasCurrentPlayerWon () {
     const winningPatterns = [
       // rows:
-      [ [0,0],[0,1],[0,3] ],
-      [ [1,0],[1,1],[1,3] ],
-      [ [2,0],[2,1],[2,3] ],
+      [ [0,0],[0,1],[0,2] ],
+      [ [1,0],[1,1],[1,2] ],
+      [ [2,0],[2,1],[2,2] ],
       //columns:
       [ [0,0],[1,0],[2,0] ],
       [ [0,1],[1,1],[2,1] ],
@@ -73,31 +68,40 @@ export default class Game extends EventEmitter {
       [ [0,2],[1,1],[2,0] ],
     ];
 
-    const self = this;
-    const board = this.getBoard();
     let winningPattern = [];
-    const found = winningPatterns.some(function (pattern) {
-      var found = pattern.every(function(coordinates) {
-        const tile = self.getTile(coordinates);
-        return tile.associatedTo === self.playerInTurn;
-      });
+
+    const winningPatternFound = winningPatterns.some(function (pattern) {
+      console.log(pattern);
+      const found = pattern.every(function(coordinates) {
+        const tile = this.getTile(coordinates);
+        if(!tile.associatedTo) {
+          return false;
+        }
+        console.log(tile.associatedTo.name, this.playerInTurn.name);
+        return (tile.associatedTo === this.playerInTurn);
+      }, this);
+      console.log(found);
+
       if(found) {
         winningPattern = pattern;
       }
       return found;
-    });
-
-    winningPattern.forEach(function(coor) {
-      this.getTile(coor).winner = true;
     }, this);
-    console.log(this._board);
+    if(winningPatternFound) {
+      winningPattern.forEach(function(coordinates) {
+        this.getTile(coordinates).winner = true;
+      }, this);
+    }
 
-    return found;
+    return winningPatternFound;
   }
 
   anyOpenTilesLeft () {
-    // check board
-    return true;
+    return this.getBoard().some(function (row) {
+      return row.some(function(tile){
+        return (!tile.associatedTo);
+      });
+    });
   }
 
   addPlayer(player) {
@@ -115,10 +119,12 @@ export default class Game extends EventEmitter {
 
   start () {
     this.playerInTurn = this.getPlayer(1);
+    this._gameStarted = true;
   }
 
   stop () {
+    this.emit('game stopped');
     this.playerInTurn = null;
-    this.emit(this.event.stop);
+    this._gameStarted = false;
   }
 }
