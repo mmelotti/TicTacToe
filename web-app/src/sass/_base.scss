@@ -79,7 +79,7 @@ button {
   padding: 0.5em 1em;
   border-width: 2px;
   border-style: solid;
-  border-color: $colour-dark-blue;
+  border-color: $tone-medium;
   background-color: lighten($tone-light, 3%);
   border-radius: 0.4em;
   font-size: 2.5rem;
@@ -98,7 +98,7 @@ button {
 }
 
 main {
-  max-width: 25em;
+  max-width: 35em;
   margin: auto;
 
   > section.view {
@@ -131,4 +131,10 @@ main {
     }
 
   }
+}
+
+img.avatar {
+  width: 2em;
+  display: inline-block;
+  vertical-align: middle;
 }

@@ -27,13 +27,19 @@ export default class Button extends React.Component {
     const state = this.state;
     const props = this.props;
     const playerId = (state.associatedTo? state.associatedTo.getId() : '');
+    const playerAvatar = (state.associatedTo? (
+      <img className="avatar" src={state.associatedTo.avatar} width="100"/>
+    ) : '');
     const classNames = `${playerId} ${props.isCTA ? 'is-cta': ''}`;
     return (
         <button type={(!props.type) ? "button" : props.type}
           onClick={this.state.clickCallback}
           className={classNames}
           onSubmit={this.onSubmit}
-        >{props.label}</button>
+        >
+          {playerAvatar}
+          {props.label}
+        </button>
     );
   }
 }

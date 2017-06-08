@@ -36,7 +36,7 @@ export default class LabeledClickField extends React.Component {
       this.setState({
         buttonCollapsed: true,
         fieldFocused: true,
-        buttonText: this.props.buttonText + ':',
+        buttonText: this.props.buttonText,
       });
     }
   }

@@ -1,5 +1,3 @@
-
-
 $collapsedButtonWidth: 6.5em;
 
 .labeled-click-field {
@@ -24,15 +22,14 @@ $collapsedButtonWidth: 6.5em;
 
   > button {
     position: absolute;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 0.1em 1em;
     bottom: 0;
     transition: border-radius 0.5s linear, width 700ms $easeNBounce;
   }
 }
 
 .labeled-click-field.collapsed > button {
-  width: $collapsedButtonWidth;
+  width: 6em;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }

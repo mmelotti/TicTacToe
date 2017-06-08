@@ -5,6 +5,13 @@
 
   figcaption {
     font-size: 1.2em;
+
+    .avatar {
+      margin-right: 1em;
+      border-radius: 50%;
+      border: 2px solid $tone-medium;
+      transition: box-shadow 0.3s ease-out;
+    }
   }
 
   figcaption, table {
@@ -85,6 +92,10 @@
 
     figcaption {
       color: darken($colour-red, 20%);
+
+      .avatar {
+        box-shadow: 0 0 1em 0.5em $colour-red;
+      }
     }
 
     th {
@@ -98,6 +109,9 @@
     figcaption {
       color: darken($colour-green, 20%);
 
+    .avatar {
+        box-shadow: 0 0 1em 0.5em $colour-green;
+      }
     }
 
     th {

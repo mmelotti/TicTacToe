@@ -30,13 +30,13 @@ export default class PlayerSelection extends React.Component {
         <form>
           <LabeledClickField
             labelText="Play as"
-            buttonText="Player 1"
+            buttonText=""
             placeholder="Enter your name..."
             associatedTo={state.gameEngine.getPlayer(1)}
           />
           <LabeledClickField
             labelText="or"
-            buttonText="Player 2"
+            buttonText=""
             placeholder="Enter your name..."
             associatedTo={state.gameEngine.getPlayer(2)}
           />

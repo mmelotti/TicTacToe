@@ -88,10 +88,16 @@ export default class PerformanceIndicator extends React.Component {
 
     const turnPenalty = (state.hadATurnPenalty)? (<em>-60</em>) :'';
     const inTurn = (state.playerIsInTurn ? 'is-in-turn': '');
+    const playerAvatar = (state.associatedTo? (
+      <img className="avatar" src={state.associatedTo.avatar} width="100"/>
+    ) : '');
     const classNames = `performance-indicator ${props.associatedTo.getId()} ${inTurn}`;
     return (
       <figure className={classNames}>
-        <figcaption>{state.associatedTo.name}</figcaption>
+        <figcaption>
+          {playerAvatar}
+          {state.associatedTo.name}
+        </figcaption>
         <table>
           <tbody>
             <tr>
