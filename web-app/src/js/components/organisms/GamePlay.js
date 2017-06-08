@@ -42,7 +42,7 @@ export default class GamePlay extends React.Component {
   }
 
   playAgain () {
-    this.state.gameEngine.reset();
+    this.state.gameEngine.reset(4);
     this.state.gameEngine.start();
     this.setState({
       gameEngine: this.state.gameEngine,

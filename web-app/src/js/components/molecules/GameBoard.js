@@ -17,6 +17,12 @@ export default class GameBoard extends React.Component {
     this.state.gameEngine.updateBoard(coordinates);
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      gameEngine: nextProps.gameEngine,
+    });
+  }
+
   render () {
     const state = this.state;
     const self = this;

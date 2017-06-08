@@ -3,20 +3,56 @@ import Tile from './Tile';
 import {EventEmitter} from 'eventemitter3';
 
 export default class Game extends EventEmitter {
-  constructor() {
+  constructor(dims) {
     super();
+
+    this.generateBoard(dims);
 
     this._players = [];
     this.reset();
   }
 
-  reset () {
-    this.playerInTurn = null;
-    this._board = [
-      [new Tile(), new Tile(), new Tile()],
-      [new Tile(), new Tile(), new Tile()],
-      [new Tile(), new Tile(), new Tile()],
+  generateBoard (dims) {
+    const a = []
+    this._board = Array.apply(null, Array(dims)).map(function(){
+      return Array.apply(null, Array(dims)).map(function(){
+        return new Tile();
+      });
+    });
+
+    //generate winningPatterns:
+    const rows = Array.apply(null, Array(dims)).map(function(a,i){
+      return Array.apply(null, Array(dims)).map(function(aa,ii){
+        return [i,ii];
+      });
+    });
+
+    const columns = Array.apply(null, Array(dims)).map(function(a,i){
+      return Array.apply(null, Array(dims)).map(function(aa,ii){
+        return [ii,i];
+      });
+    });
+
+    const diagonal1 = Array.apply(null, Array(dims)).map(function(aa,ii){
+      return [ii,ii];
+    });
+
+    const diagonal2 = Array.apply(null, Array(dims)).map(function(aa,ii){
+      return [ii,dims - 1 - ii];
+    });
+
+    this._winningPatterns = [
+      ...rows,
+      ...columns,
+      ...[diagonal1],
+      ...[diagonal2]
     ];
+  }
+
+  reset (dims) {
+    dims = dims || 3;
+    this.playerInTurn = null;
+    this.generateBoard(dims);
   }
 
   newTurn () {
@@ -56,23 +92,9 @@ export default class Game extends EventEmitter {
   }
 
   hasCurrentPlayerWon () {
-    const winningPatterns = [
-      // rows:
-      [ [0,0],[0,1],[0,2] ],
-      [ [1,0],[1,1],[1,2] ],
-      [ [2,0],[2,1],[2,2] ],
-      //columns:
-      [ [0,0],[1,0],[2,0] ],
-      [ [0,1],[1,1],[2,1] ],
-      [ [0,2],[1,2],[2,2] ],
-      // diagonals
-      [ [0,0],[1,1],[2,2] ],
-      [ [0,2],[1,1],[2,0] ],
-    ];
-
     let winningPattern = [];
 
-    const winningPatternFound = winningPatterns.some(function (pattern) {
+    const winningPatternFound = this._winningPatterns.some(function (pattern) {
       const found = pattern.every(function(coordinates) {
         const tile = this.getTile(coordinates);
         if(!tile.associatedTo) {

@@ -20,7 +20,7 @@ export default class App extends React.Component {
     const player2 = new Player();
     player2.avatar = 'sheep';
 
-    this._gameEngine = new Game();
+    this._gameEngine = new Game(3);
     this._gameEngine.addPlayer(player1);
     this._gameEngine.addPlayer(player2);
 
