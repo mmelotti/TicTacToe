@@ -22,7 +22,6 @@ export default class App extends React.Component {
     this._gameEngine = new Game();
     this._gameEngine.addPlayer(player1);
     this._gameEngine.addPlayer(player2);
-    this._gameEngine.start();
 
     this.state = {
       currentView: <PlayerSelection
@@ -33,6 +32,8 @@ export default class App extends React.Component {
   }
 
   onGameRequested (e) {
+    this._gameEngine.reset();
+    this._gameEngine.start();
     this.setState({
       currentView: <GamePlay
         gameWin={this.onHallOfGameRequested}

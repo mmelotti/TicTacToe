@@ -7,13 +7,16 @@ export default class Game extends EventEmitter {
     super();
 
     this._players = [];
-    this.playerInTurn = null;
+    this.reset();
+  }
 
+  reset () {
+    this.playerInTurn = null;
     this._board = [
       [new Tile(), new Tile(), new Tile()],
       [new Tile(), new Tile(), new Tile()],
       [new Tile(), new Tile(), new Tile()],
-    ]
+    ];
   }
 
   newTurn () {

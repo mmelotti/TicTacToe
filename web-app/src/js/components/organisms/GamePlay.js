@@ -9,7 +9,8 @@ export default class PlayerSelection extends React.Component {
     super(props);
 
     this.state = {
-      gameEngine: props.gameEngine
+      gameEngine: props.gameEngine,
+      gameWin: props.gameWin,
     };
 
     // this.state.gameEngine.addListener('game-player-switched', this.gameHasUpdated);
@@ -37,17 +38,24 @@ export default class PlayerSelection extends React.Component {
   }
 
   goToHallOfFame () {
-    //
+    this.state.gameWin();
   }
 
   playAgain () {
-    //
+    this.state.gameEngine.reset();
+    this.state.gameEngine.start();
+    this.setState({
+      gameEngine: this.state.gameEngine,
+      winner: null,
+      loser: null,
+      gameIsTied: null,
+    });
   }
 
   render () {
     const state = this.state;
     const self = this;
-    console.log(state);
+
     const gameIsTied = (state.gameIsTied) ? (
       <MessageBox
         text="Nobody won, you could try again?"
@@ -64,7 +72,7 @@ export default class PlayerSelection extends React.Component {
           okCallback={self.goToHallOfFame}
           okLabel="Go to Hall of Fame"
           associatedTo={state.winner}
-          cancelCallback={self.goToHallOfFame}
+          cancelCallback={self.playAgain}
           cancelLabel="play again"/>
       );
     }
