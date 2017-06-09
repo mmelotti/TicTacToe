@@ -6,7 +6,7 @@ export default class PageHeader extends React.Component {
     const props = this.props;
     let subHeading;
     if (props.subHeading) {
-      subHeading = (<span class="sub-heading">props.subHeading</span>);
+      subHeading = (<span className="sub-heading">{props.subHeading}</span>);
     }
 
     return (
