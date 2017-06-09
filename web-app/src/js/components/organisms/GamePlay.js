@@ -28,13 +28,17 @@ export default class GamePlay extends React.Component {
   }
 
   gameHasStopped (event) {
-    this.setState({
-      gameEngine: this.state.gameEngine,
-      timeStopped: true,
-      winner: event.winner,
-      loser: event.loser,
-      gameIsTied: event.gameIsTied,
-    });
+    const self = this;
+    setTimeout(function (){
+
+      self.setState({
+        gameEngine: self.state.gameEngine,
+        timeStopped: true,
+        winner: event.winner,
+        loser: event.loser,
+        gameIsTied: event.gameIsTied,
+      });
+    }, 1000);
   }
 
   goToHallOfFame () {
@@ -42,7 +46,7 @@ export default class GamePlay extends React.Component {
   }
 
   playAgain () {
-    this.state.gameEngine.reset(4);
+    this.state.gameEngine.reset();
     this.state.gameEngine.start();
     this.setState({
       gameEngine: this.state.gameEngine,

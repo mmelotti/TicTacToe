@@ -53,6 +53,7 @@ export default class Game extends EventEmitter {
     dims = dims || 3;
     this.playerInTurn = null;
     this.generateBoard(dims);
+    this.emit('game started');
   }
 
   newTurn () {
@@ -61,6 +62,8 @@ export default class Game extends EventEmitter {
     } else {
       this.playerInTurn = this.getPlayer(1);
     }
+
+    this.emit('new turn started');
   }
 
   getBoard () {

@@ -4,7 +4,7 @@ export default class PerformanceIndicator extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ticker = null;
+    this.ticker = false;
     this.initialRating = 5;
     this.initialTime = 500;
     this.colour = {
@@ -18,9 +18,35 @@ export default class PerformanceIndicator extends React.Component {
       rating: this.initialRating, // starting rate.
       playerIsInTurn: (props.gameEngine.playerInTurn === props.associatedTo),
       hadATurnPenalty: false,
+      gameEngine: props.gameEngine,
     };
 
     this.bubbles = Array.from({length: this.initialRating}, (v, i) => i+1);
+
+    this.state.gameEngine.addListener('game started', this.reset.bind(this));
+    this.state.gameEngine.addListener('new turn started', this.timerCheck.bind(this));
+  }
+
+  reset () {
+    this.setState({
+      remainingTime: this.initialTime, // in seconds
+      rating: this.initialRating, // starting rate.
+      playerIsInTurn: (this.state.gameEngine.playerInTurn === this.state.associatedTo)
+    });
+
+
+  }
+
+  timerCheck () {
+    this.setState({
+      playerIsInTurn: (this.state.gameEngine.playerInTurn === this.state.associatedTo)
+    });
+
+    if (this.state.playerIsInTurn) {
+      this.start();
+    } else {
+      this.pause();
+    }
   }
 
   updateRating () {
@@ -35,6 +61,7 @@ export default class PerformanceIndicator extends React.Component {
       hadATurnPenalty: hadATurnPenalty,
     });
 
+
     if(this.state.remainingTime <= 0) {
       this.pause();
     } else {
@@ -47,37 +74,38 @@ export default class PerformanceIndicator extends React.Component {
   }
 
   pause () {
-    clearInterval(this.ticker);
-    this.updateTime(60,true);
-    this.state.associatedTo.points = this.state.remainingTime;
+    if (this.ticker) {
+      clearInterval(this.ticker);
+      this.ticker = false;
+      this.updateTime(60,true);
+      this.state.associatedTo.points = this.state.remainingTime;
+    }
   }
 
   stop () {
-    clearInterval(this.ticker);
-    this.state.associatedTo.points = this.state.remainingTime;
-  }
-
-  componentDidMount () {
-    if (this.state.playerIsInTurn) {
-      this.start();
+    if (this.ticker) {
+      clearInterval(this.ticker);
+      this.ticker = false;
+      this.state.associatedTo.points = this.state.remainingTime;
     }
   }
 
   componentWillReceiveProps (nextProps) {
-
-    if (nextProps.gameEngine.playerInTurn === nextProps.associatedTo) {
-      this.start();
-    } else {
-      this.pause();
-    }
 
     this.setState({
       playerInTurn: nextProps.playerInTurn,
       playerIsInTurn: (nextProps.gameEngine.playerInTurn === nextProps.associatedTo),
     });
 
+
     if (nextProps.timeStopped) {
       this.stop();
+    }
+  }
+
+  componentDidMount () {
+    if (this.state.playerIsInTurn) {
+      this.start();
     }
   }
 
