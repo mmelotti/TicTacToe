@@ -7,32 +7,32 @@ var sass = require('gulp-sass');
 
 gulp.task('build-js', function() {
  var b = browserify({
-   entries: ['web-app/src/js/index.js'], //entry file
+   entries: ['./src/js/index.js'], //entry file
    debug: true
  });
  b.transform(reactify); // use the reactify transform
  return b.bundle()
   .pipe(source('index.js'))
   .on('error', onError)
-  .pipe(gulp.dest('./web-app/build/js/'));
+  .pipe(gulp.dest('./build/js/'));
 });
 
 gulp.task('build-kitchen-sink-js', function() {
  var b = browserify({
-   entries: ['web-app/src/js/kitchen-sink.js'], //entry file
+   entries: ['./src/js/kitchen-sink.js'], //entry file
    debug: true
  });
  b.transform(reactify); // use the reactify transform
  return b.bundle()
   .pipe(source('kitchen-sink.js'))
   .on('error', onError)
-  .pipe(gulp.dest('./web-app/build/js/'));
+  .pipe(gulp.dest('./build/js/'));
 });
 
 gulp.task('build-styling', function() {
-  gulp.src('web-app/src/sass/index.scss')
+  gulp.src('./src/sass/index.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./web-app/build/css/'));
+    .pipe(gulp.dest('./build/css/'));
 });
 
 function onError(err) {
@@ -41,9 +41,9 @@ function onError(err) {
 }
 
 gulp.task('watch', function() {
-  gulp.watch('web-app/src/js/**/*.js', ['build-js']);
-  gulp.watch('web-app/src/js/**/*.js', ['build-kitchen-sink-js']);
-  gulp.watch('web-app/src/sass/**/*.scss',['build-styling']);
+  gulp.watch('./src/js/**/*.js', ['build-js']);
+  gulp.watch('./src/js/**/*.js', ['build-kitchen-sink-js']);
+  gulp.watch('./src/sass/**/*.scss',['build-styling']);
 });
 
 gulp.task('default', ['watch','build-js','build-kitchen-sink-js', 'build-styling']);
